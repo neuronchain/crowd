@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Neuron Crowd</title>
+        <!-- Viewport mobile tag for sensible mobile support -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" href="/styles/bootstrap.min.css">
+        <link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+    </head>
+
+    <body>
+        <div id="main-content"></div>
+    </body>
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/underscore.js"></script>
+    <script src="/js/backbone.js"></script>
+    <script src="/js/backbone.radio.js"></script>
+    <script src="/js/backbone.marionette.min.js"></script>
+    <%- partial('templates/root-template.js') %>
+    <%- partial('templates/header-template.js') %>
+    <%- partial('templates/login-template.js') %>
+    <%- partial('templates/user-template.js') %>
+    <%- partial('templates/edit-project-template.js') %>
+    <%- partial('templates/project-template.js') %>
+    <%- partial('templates/project-body-template.js') %>
+    <script>
+        _.templateSettings = {
+            interpolate: /\{\{=(.+?)\}\}/g,
+            evaluate: /\{\{(.+?)\}\}/g,
+            escape: /\{\{-(.+?)\}\}/g
+        };
+        var app = app || {};
+        app.types = app.types || {};
+        <% if (user) { %> 
+            app.user = new Backbone.Model(<%- JSON.stringify(user) %>);
+        <% } %>
+
+        <%- partial('models/Project.js') %>
+        <%- partial('collections/ProjectList.js') %>
+
+        <%- partial('views/projectView.js') %>
+        <%- partial('views/projectBodyView.js') %>
+        <%- partial('views/editProjectView.js') %>
+        <%- partial('views/userView.js') %>
+        <%- partial('views/loginView.js') %>
+        <%- partial('views/headerView.js') %>
+        <%- partial('views/rootView.js') %>
+
+        <%- partial('router/appController.js') %>
+        <%- partial('router/appRouter.js') %>
+
+        <%- partial('mainApplication.js') %>
+    </script>
+
+</html>

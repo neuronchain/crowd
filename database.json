@@ -1,0 +1,10 @@
+{
+    "crowd": {
+        "driver": "pg",
+        "user": "web",
+        "password": "web",
+        "host": "localhost",
+        "database": "crowd-ico",
+        "schema": "public"
+    }
+}
